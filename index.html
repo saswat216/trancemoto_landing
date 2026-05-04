@@ -1715,21 +1715,22 @@
       btn.textContent = 'Adding you…';
       btn.disabled = true;
 
-      fetch('https://script.google.com/macros/s/AKfycbxv59GUNhPG5bpJ3cwNKXZIt4CROUUO6YKthIxDEojJZtFJ9MmpgO5hfr-pU6yqvAY/exec', {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({ name, email })
-        })
-      .then(() => {})
-        .catch(() => {})
-        .finally(() => {
-          document.getElementById('waitlistForm').style.display = 'none';
-          document.querySelector('.waitlist-privacy').style.display = 'none';
-          const success = document.getElementById('waitlistSuccess');
-          success.style.display = 'flex';
-          success.style.animation = 'fadeSlideUp 0.5s ease forwards';
-        });
+      fetch('https://formspree.io/f/xvzlkvao', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name, email })
+      })
+      .then(() => {
+        document.getElementById('waitlistForm').style.display = 'none';
+        document.querySelector('.waitlist-privacy').style.display = 'none';
+        const success = document.getElementById('waitlistSuccess');
+        success.style.display = 'flex';
+        success.style.animation = 'fadeSlideUp 0.5s ease forwards';
+      })
+      .catch(() => {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      });
     }
 
     /* Allow Enter key in email field */
