@@ -1716,10 +1716,11 @@
       btn.disabled = true;
 
       fetch('https://script.google.com/macros/s/AKfycbxv59GUNhPG5bpJ3cwNKXZIt4CROUUO6YKthIxDEojJZtFJ9MmpgO5hfr-pU6yqvAY/exec', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email })
-      })
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({ name, email })
+        })
       .then(() => {
         document.getElementById('waitlistForm').style.display = 'none';
         document.querySelector('.waitlist-privacy').style.display = 'none';
