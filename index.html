@@ -1715,14 +1715,22 @@
       btn.textContent = 'Adding you…';
       btn.disabled = true;
 
-      // Simulate submit (replace with real endpoint)
-      setTimeout(() => {
+      fetch('https://script.google.com/macros/s/AKfycbxv59GUNhPG5bpJ3cwNKXZIt4CROUUO6YKthIxDEojJZtFJ9MmpgO5hfr-pU6yqvAY/exec', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email })
+      })
+      .then(() => {
         document.getElementById('waitlistForm').style.display = 'none';
         document.querySelector('.waitlist-privacy').style.display = 'none';
         const success = document.getElementById('waitlistSuccess');
         success.style.display = 'flex';
         success.style.animation = 'fadeSlideUp 0.5s ease forwards';
-      }, 1200);
+      })
+      .catch(() => {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      });
     }
 
     /* Allow Enter key in email field */
