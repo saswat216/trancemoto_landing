@@ -1721,17 +1721,15 @@
           headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify({ name, email })
         })
-      .then(() => {
-        document.getElementById('waitlistForm').style.display = 'none';
-        document.querySelector('.waitlist-privacy').style.display = 'none';
-        const success = document.getElementById('waitlistSuccess');
-        success.style.display = 'flex';
-        success.style.animation = 'fadeSlideUp 0.5s ease forwards';
-      })
-      .catch(() => {
-        btn.textContent = 'Try again';
-        btn.disabled = false;
-      });
+      .then(() => {})
+        .catch(() => {})
+        .finally(() => {
+          document.getElementById('waitlistForm').style.display = 'none';
+          document.querySelector('.waitlist-privacy').style.display = 'none';
+          const success = document.getElementById('waitlistSuccess');
+          success.style.display = 'flex';
+          success.style.animation = 'fadeSlideUp 0.5s ease forwards';
+        });
     }
 
     /* Allow Enter key in email field */
